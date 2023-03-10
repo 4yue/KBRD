@@ -21,7 +21,6 @@ from parlai.core.worlds import create_task
 
 import random
 
-
 def setup_args():
     parser = ParlaiParser(True, True, 'Display model predictions.')
     parser.add_argument('-n', '--num-examples', default=10)

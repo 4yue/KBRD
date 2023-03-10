@@ -70,7 +70,7 @@ DBPEDIA_PATH = "dbpedia/mappingbased_objects_en.ttl"
 def _build_dbpedia(dbpedia_path):
     movie2entity = {}
     movie2years = defaultdict(set)
-    with open(dbpedia_path) as f:
+    with open(dbpedia_path, encoding='gb18030', errors='ignore') as f:
         for line in f.readlines():
             if line.startswith("#"):
                 continue
@@ -86,7 +86,7 @@ def _build_dbpedia(dbpedia_path):
 
 def _load_kg(path):
     kg = defaultdict(list)
-    with open(path) as f:
+    with open(path, encoding='gb18030', errors='ignore') as f:
         for line in f.readlines():
             tuples = line.split()
             if tuples and len(tuples) == 4 and tuples[-1] == ".":
@@ -103,6 +103,7 @@ def _extract_subkg(kg, seed_set, n_hop):
 
     ripple_set = []
     for h in range(n_hop):
+        # head, relations, tail
         memories_h = []
         memories_r = []
         memories_t = []
@@ -125,7 +126,6 @@ def _extract_subkg(kg, seed_set, n_hop):
         ripple_set.append((memories_h, memories_r, memories_t))
 
     return subkg
-
 
 def build(opt):
     # get path to data directory
@@ -159,7 +159,7 @@ def build(opt):
 
         # Match REDIAL movies to dbpedia entities
         movies_with_mentions_path = os.path.join(dpath, "movies_with_mentions.csv")
-        with open(movies_with_mentions_path, "r") as f:
+        with open(movies_with_mentions_path, "r", encoding='gb18030', errors='ignore') as f:
             reader = csv.reader(f)
             id2movie = {int(row[0]): row[1] for row in reader if row[0] != "movieId"}
         id2entity = {}

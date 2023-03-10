@@ -8,6 +8,9 @@
 See parlai.scripts.display_model for documentation.
 """
 
+import sys
+sys.path.append('')
+
 from parlai.scripts.display_model import display_model, setup_args
 
 if __name__ == '__main__':

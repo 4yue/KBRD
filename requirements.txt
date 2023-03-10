@@ -14,7 +14,6 @@ regex
 requests
 scikit-learn
 scipy
-sh
 sphinx
 sphinx_rtd_theme
 tqdm

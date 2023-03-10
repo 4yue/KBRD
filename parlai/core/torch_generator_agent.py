@@ -393,7 +393,7 @@ class TorchGeneratorAgent(TorchAgent):
             open(os.path.join("data", "redial", "id2entity.pkl"), "rb")
         )
         self.entity2id = {id2entity[x]: x for x in id2entity}
-        with open(os.path.join("data", "redial", "movies_with_mentions.csv"), "r") as f:
+        with open(os.path.join("data", "redial", "movies_with_mentions.csv"), "r", encoding='gb18030', errors='ignore') as f:
             self.mid2movie = {}
             f.readline()
             for line in f:
